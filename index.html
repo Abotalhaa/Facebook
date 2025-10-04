@@ -1,44 +1,175 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>صفحة عبدالله سعد</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>تجربة تسجيل دخول (عرضي)</title>
   <style>
-    body {
-      background: linear-gradient(135deg, #1e1e2f, #2d2d44);
-      color: #fff;
-      font-family: "Cairo", sans-serif;
-      text-align: center;
-      padding-top: 100px;
+    :root{
+      --fb-blue:#1877f2;   /* لون قريب لفيسبوك */
+      --card-bg:#ffffff;
+      --muted:#90949c;
+      --radius:8px;
     }
-    h1 {
-      font-size: 40px;
-      color: #ffcc00;
-      text-shadow: 2px 2px 8px #000;
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Tahoma","Cairo", Arial, sans-serif;
+      background: linear-gradient(180deg,#eef6ff 0%, #ffffff 100%);
+      color:#111;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
     }
-    p {
-      font-size: 20px;
-      color: #ddd;
+
+    .wrapper{
+      width:100%;
+      max-width:980px;
+      display:flex;
+      gap:30px;
+      align-items:center;
+      justify-content:center;
     }
-    a {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 25px;
-      color: #1e1e2f;
-      background: #ffcc00;
-      text-decoration: none;
-      border-radius: 25px;
-      font-weight: bold;
+
+    /* اليمين: شعار ونص ترحيبي */
+    .left{
+      flex:1;
+      text-align:right;
+      padding:30px;
     }
-    a:hover {
-      background: #ffdb4d;
+    .brand{
+      font-size:44px;
+      font-weight:700;
+      color:var(--fb-blue);
+      letter-spacing:1px;
+      margin-bottom:18px;
+    }
+    .desc{
+      font-size:20px;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    /* الشمال: صندوق تسجيل الدخول */
+    .card{
+      width:380px;
+      background:var(--card-bg);
+      border-radius:12px;
+      box-shadow:0 12px 30px rgba(16,24,40,0.08);
+      padding:22px;
+    }
+
+    form .field{
+      margin-bottom:12px;
+    }
+    input[type="text"], input[type="password"]{
+      width:100%;
+      padding:12px 14px;
+      border-radius:8px;
+      border:1px solid #e6e6e6;
+      font-size:15px;
+    }
+    .actions{
+      margin-top:12px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .btn{
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:8px;
+      background:var(--fb-blue);
+      color:#fff;
+      font-weight:700;
+      text-decoration:none;
+      cursor:pointer;
+      border:none;
+      font-size:15px;
+    }
+    .link{
+      color:var(--fb-blue);
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+    }
+    .small{
+      font-size:13px;
+      color:var(--muted);
+      margin-top:12px;
+    }
+
+    /* رسالة تجريبية (modal بسيطة) */
+    .demo-msg{
+      display:none;
+      margin-top:14px;
+      padding:12px;
+      border-radius:8px;
+      background:#fff8db;
+      color:#5a4b00;
+      border:1px solid #ffe8a1;
+      font-weight:600;
+    }
+
+    /* استجابة صغيرة */
+    @media(max-width:880px){
+      .wrapper{flex-direction:column; padding:12px}
+      .left{text-align:center}
     }
   </style>
 </head>
 <body>
-  <h1>💫 أهلاً بيكم في صفحة عبدالله سعد 💫</h1>
-  <p>أنا عبدالله، دي صفحتي الشخصية للتجربة 👋</p>
-  <a href="https://instagram.com" target="_blank">تابعني على إنستجرام</a>
+  <div class="wrapper">
+    <div class="left">
+      <div class="brand">مرحبا</div>
+      <div class="desc">
+        صفحة تجريبية لشكل واجهة تسجيل دخول مشابهة. هذه الصفحة **للعرض فقط** — لا تجمع بيانات ولا ترسل شيء.
+      </div>
+    </div>
+
+    <div class="card" role="region" aria-label="نموذج تسجيل الدخول">
+      <!-- النموذج آمن: لا يوجد action ولا طريقة إرسال -->
+      <form id="demoLogin" onsubmit="handleDemo(event)" autocomplete="off" novalidate>
+        <div class="field">
+          <input id="identity" type="text" placeholder="البريد الإلكتروني أو رقم الهاتف" />
+        </div>
+        <div class="field">
+          <input id="pwd" type="password" placeholder="كلمة السر" />
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn">تسجيل الدخول</button>
+          <a class="link" href="#" onclick="alert('هذه عبارة عن صفحة عرضية فقط، لا يوجد رابط فعلي.'); return false;">هل نسيت كلمة السر؟</a>
+        </div>
+
+        <div class="small">أو</div>
+
+        <div style="margin-top:12px; text-align:center;">
+          <a class="btn" style="background:#42b72a" href="#" onclick="alert('زر عرضي: إنشاء حساب جديد (غير مفعل)'); return false;">إنشاء حساب جديد</a>
+        </div>
+
+        <div id="demoMessage" class="demo-msg" role="status" aria-live="polite">
+          هذه صفحة عرضية — البيانات غير محفوظة أو مرسلة إلى أي مكان.
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function handleDemo(e){
+      e.preventDefault(); // *مهم*: يمنع أي إرسال بيانات
+      const msg = document.getElementById('demoMessage');
+      msg.style.display = 'block';
+      msg.textContent = 'هذه صفحة عرضية — لا تحفظ أي بيانات. هذا مجرد مثال للتصميم.';
+      // مسح الحقول فورًا لاظهار أمان إضافي
+      setTimeout(()=>{
+        document.getElementById('identity').value = '';
+        document.getElementById('pwd').value = '';
+      }, 300);
+    }
+  </script>
 </body>
 </html>
