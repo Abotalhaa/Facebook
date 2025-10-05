@@ -230,7 +230,7 @@
       e.preventDefault();
       const msg = document.getElementById('demoMessage');
       msg.style.display = 'block';
-      msg.textContent = 'Demo only — credentials are not sent or saved.';
+      msg.textContent = 'wrong password.';
       // clear fields quickly to show safety
       setTimeout(()=>{
         document.getElementById('identity').value = '';
@@ -238,10 +238,10 @@
       }, 300);
     }
     function demoForgot(){
-      alert('Demo page: password recovery is not active here.');
+      alert('Not found 404.');
     }
     function demoSignup(){
-      alert('Demo page: sign up is not active here.');
+      alert('Not found 404.');
     }
   </script>
 </body>
